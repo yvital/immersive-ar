@@ -121,10 +121,83 @@
                 } */
 
                 rabbitOne.position.copy(reticle.position);
-                rabbitOne.rotateY(Math.PI);
+                rabbitOne.rotateX(Math.PI);
 
                 scene.add(rabbitOne);
             });
+
+            function videoFrame() {
+                let index = 0;
+                function changeImage() {
+                    if (index == 0) {
+                        rabbitOne.material = materialRabbit_0;
+                    }
+                    if (index == 1) {
+                        rabbitOne.material = materialRabbit_1;
+                    }
+                    if (index == 2) {
+                        rabbitOne.material = materialRabbit_2;
+                    }
+                    if (index == 3) {
+                        rabbitOne.material = materialRabbit_3;
+                    }
+                    if (index == 4) {
+                        rabbitOne.material = materialRabbit_4;
+                    }
+                    if (index == 5) {
+                        rabbitOne.material = materialRabbit_5;
+                    }
+                    if (index == 6) {
+                        rabbitOne.material = materialRabbit_6;
+                    }
+                    if (index == 7) {
+                        rabbitOne.material = materialRabbit_7;
+                    }
+                    if (index == 8) {
+                        rabbitOne.material = materialRabbit_8;
+                    }
+                    if (index == 9) {
+                        rabbitOne.material = materialRabbit_9;
+                    }
+                    if (index == 10) {
+                        rabbitOne.material = materialRabbit_10;
+                    }
+                    if (index == 11) {
+                        rabbitOne.material = materialRabbit_11;
+                    }
+                    if (index == 12) {
+                        rabbitOne.material = materialRabbit_12;
+                    }
+                    if (index == 13) {
+                        rabbitOne.material = materialRabbit_13;
+                    }
+                    if (index == 14) {
+                        rabbitOne.material = materialRabbit_14;
+                    }
+                    if (index == 15) {
+                        rabbitOne.material = materialRabbit_15;
+                    }
+                    if (index == 16) {
+                        rabbitOne.material = materialRabbit_16;
+                    }
+                    if (index == 17) {
+                        rabbitOne.material = materialRabbit_17;
+                    }
+                    if (index == 18) {
+                        rabbitOne.material = materialRabbit_18;
+                    }
+                    if (index == 19) {
+                        rabbitOne.material = materialRabbit_19;
+                    }
+                    if (index == 20) {
+                        rabbitOne.material = materialRabbit_20;
+                    }
+                    index++;
+                    if (index > 20) index = 0;
+
+                }
+                setInterval(() => changeImage(), 1000);
+            }
 
             // Create a render loop that allows us to draw on the AR view.
             const onXRFrame = (time, frame) => {
@@ -159,6 +232,7 @@
                     }
 
                     // Render the scene with THREE.WebGLRenderer.
+                    videoFrame();
                     renderer.render(scene, camera)
                 }
             }

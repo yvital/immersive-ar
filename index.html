@@ -145,8 +145,8 @@
 
                 }
                 setInterval(() => changeImage(), 140);
-            }        
-            
+            }
+
             videoFrame();
 
             // Set up the WebGLRenderer, which handles rendering to the session's base layer.
@@ -201,6 +201,14 @@
                 rabbitOne.position.x = 0;
                 rabbitOne.position.y = reticle.position.y;
                 rabbitOne.position.z = reticle.position.z;
+
+                const audioLoader = new THREE.AudioLoader();
+                audioLoader.load('https://drive.google.com/file/d/1fJys_AaFGXoFtJ25cFIE85Cf9jLbJWQK/view?usp=drive_link', function (buffer) {
+                    sound.setBuffer(buffer);
+                    sound.setLoop(true);
+                    sound.setVolume(0.5);
+                    sound.play();
+                });
 
                 scene.add(rabbitOne);
             });

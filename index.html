@@ -121,13 +121,13 @@
             })
 
             session.addEventListener("select", (event) => {
+
                 rabbitOne.position.copy(reticle.position);
                 rabbitOne.rotateX(Math.PI);
                 scene.add(rabbitOne);
-                visibleCircle = true;
-            });
+                //visibleCircle = false;
+               
 
-            if (visibleCircle) {
                 let index = 0;
                 function changeImage() {
                     if (index == 0) {
@@ -197,9 +197,10 @@
                     if (index > 20) index = 0;
 
                 }
-                setInterval(() => changeImage(), 190);
+                setInterval(() => changeImage(), 220);
                 //changeImage();
-            }
+
+            });
 
             // Create a render loop that allows us to draw on the AR view.
             const onXRFrame = (time, frame) => {

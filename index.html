@@ -74,58 +74,6 @@
             let materialRabbit_20 = new THREE.MeshBasicMaterial({ map: textureRabbit_20, transparent: true })
             let rabbitOne = new THREE.Mesh(geometryRabbit, materialRabbit_0);
 
-            // Set up the WebGLRenderer, which handles rendering to the session's base layer.
-            const renderer = new THREE.WebGLRenderer({
-                alpha: true,
-                preserveDrawingBuffer: true,
-                canvas: canvas,
-                context: gl
-            });
-            renderer.autoClear = false;
-
-            // The API directly updates the camera matrices.
-            // Disable matrix auto updates so three.js doesn't attempt
-            // to handle the matrices independently.
-            const camera = new THREE.PerspectiveCamera();
-            camera.matrixAutoUpdate = false;
-
-            // Initialize a WebXR session using "immersive-ar".
-            const session = await navigator.xr.requestSession("immersive-ar", { requiredFeatures: ['hit-test'] });
-            session.updateRenderState({
-                baseLayer: new XRWebGLLayer(session, gl)
-            });
-
-            // A 'local' reference space has a native origin that is located
-            // near the viewer's position at the time the session was created.
-            const referenceSpace = await session.requestReferenceSpace('local');
-
-            // Create another XRReferenceSpace that has the viewer as the origin.
-            const viewerSpace = await session.requestReferenceSpace('viewer');
-            // Perform hit testing using the viewer as origin.
-            const hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
-
-            const loader = new THREE.GLTFLoader();
-            let reticle;
-            loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function (gltf) {
-                reticle = gltf.scene;
-                reticle.visible = false;
-                scene.add(reticle);
-            })
-
-
-            session.addEventListener("select", (event) => {
-                /* if (flower) {
-                    const clone = flower.clone();
-                    clone.position.copy(reticle.position);
-                    scene.add(clone);
-                } */
-
-                rabbitOne.position.copy(reticle.position);
-                rabbitOne.rotateX(Math.PI);
-
-                scene.add(rabbitOne);
-            });
-
             function videoFrame() {
                 let index = 0;
                 function changeImage() {
@@ -197,7 +145,63 @@
 
                 }
                 setInterval(() => changeImage(), 4000);
-            }
+            }        
+            
+            videoFrame();
+
+            // Set up the WebGLRenderer, which handles rendering to the session's base layer.
+            const renderer = new THREE.WebGLRenderer({
+                alpha: true,
+                preserveDrawingBuffer: true,
+                canvas: canvas,
+                context: gl
+            });
+            renderer.autoClear = false;
+
+            // The API directly updates the camera matrices.
+            // Disable matrix auto updates so three.js doesn't attempt
+            // to handle the matrices independently.
+            const camera = new THREE.PerspectiveCamera();
+            camera.matrixAutoUpdate = false;
+
+            // Initialize a WebXR session using "immersive-ar".
+            const session = await navigator.xr.requestSession("immersive-ar", { requiredFeatures: ['hit-test'] });
+            session.updateRenderState({
+                baseLayer: new XRWebGLLayer(session, gl)
+            });
+
+            // A 'local' reference space has a native origin that is located
+            // near the viewer's position at the time the session was created.
+            const referenceSpace = await session.requestReferenceSpace('local');
+
+            // Create another XRReferenceSpace that has the viewer as the origin.
+            const viewerSpace = await session.requestReferenceSpace('viewer');
+            // Perform hit testing using the viewer as origin.
+            const hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
+
+            const loader = new THREE.GLTFLoader();
+            let reticle;
+            loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/reticle/reticle.gltf", function (gltf) {
+                reticle = gltf.scene;
+                reticle.visible = false;
+                scene.add(reticle);
+            })
+
+
+            session.addEventListener("select", (event) => {
+                /* if (flower) {
+                    const clone = flower.clone();
+                    clone.position.copy(reticle.position);
+                    scene.add(clone);
+                } */
+
+                rabbitOne.position.copy(reticle.position);
+                rabbitOne.rotateX(Math.PI);
+
+                scene.add(rabbitOne);
+            });
+
+
 
             // Create a render loop that allows us to draw on the AR view.
             const onXRFrame = (time, frame) => {
@@ -231,8 +235,7 @@
                         reticle.updateMatrixWorld(true);
                     }
 
-                    // Render the scene with THREE.WebGLRenderer.
-                    videoFrame();
+                    // Render the scene with THREE.WebGLRenderer                    
                     renderer.render(scene, camera)
                 }
             }

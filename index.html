@@ -202,13 +202,6 @@
                 rabbitOne.position.y = reticle.position.y;
                 rabbitOne.position.z = reticle.position.z;
 
-                const audioLoader = new THREE.AudioLoader();
-                audioLoader.load('../rabbit/cold-funk-by-kevin-macleod-from-filmmusic-io.mp3', function (buffer) {
-                    sound.setBuffer(buffer);
-                    sound.setLoop(true);
-                    sound.setVolume(0.5);
-                    sound.play();
-                });
 
                 scene.add(rabbitOne);
             });

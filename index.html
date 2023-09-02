@@ -47,7 +47,7 @@
             camera.matrixAutoUpdate = false;
 
             // Initialize a WebXR session using "immersive-ar".
-            const session = await navigator.xr.requestSession("immersive-ar", { requiredFeatures: ['local-floor'] });
+            const session = await navigator.xr.requestSession("immersive-ar", { requiredFeatures: ['hit-test'] });
             session.updateRenderState({
                 baseLayer: new XRWebGLLayer(session, gl)
             });
@@ -109,7 +109,7 @@
                     if (hitTestResults.length > 0 && reticle) {
                         const hitPose = hitTestResults[0].getPose(referenceSpace);
                         reticle.visible = true;
-                        reticle.position.set(hitPose.transform.position.x, hitPose.transform.position.y, hitPose.transform.position.z)
+                        reticle.position.set(hitPose.transform.position.x, 0, hitPose.transform.position.z)
                         reticle.updateMatrixWorld(true);
                     }
 

@@ -31,7 +31,7 @@
             // To be continued in upcoming steps.
             const scene = new THREE.Scene();
 
-            let geometryRabbit = new THREE.PlaneGeometry(720 / 100, 1280 / 100);
+            let geometryRabbit = new THREE.PlaneGeometry(720 / 500, 1280 / 500);
             let textureRabbit_0 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d0.png');
             let materialRabbit_0 = new THREE.MeshBasicMaterial({ map: textureRabbit_0, transparent: true });
             let textureRabbit_1 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d1.png');
@@ -133,7 +133,7 @@
                 } */
 
                 rabbitOne.position.copy(reticle.position);
-                rabbitOne.rotateY(Math.PI);
+                rabbitOne.rotateX(Math.PI);
                 scene.add(rabbitOne);
                 visibleCircle = false;
                 reticle.visible = false;

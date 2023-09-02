@@ -195,8 +195,11 @@
                     scene.add(clone);
                 } */
 
-                rabbitOne.position.copy(reticle.position);
-                rabbitOne.rotateX(Math.PI);
+                //rabbitOne.position.copy(reticle.position);
+                //rabbitOne.rotateX(Math.PI);
+
+                rabbitOne.position.x = reticle.position.x;
+                rabbitOne.position.z = reticle.position.z;
 
                 scene.add(rabbitOne);
             });

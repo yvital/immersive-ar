@@ -74,10 +74,6 @@
             let materialRabbit_20 = new THREE.MeshBasicMaterial({ map: textureRabbit_20, transparent: true })
             let rabbitOne = new THREE.Mesh(geometryRabbit, materialRabbit_0);
 
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
-            directionalLight.position.set(10, 15, 10);
-            scene.add(directionalLight);
-
             // Set up the WebGLRenderer, which handles rendering to the session's base layer.
             const renderer = new THREE.WebGLRenderer({
                 alpha: true,
@@ -125,7 +121,7 @@
                 } */
 
                 rabbitOne.position.copy(reticle.position);
-                rabbitOne.rotateZ(Math.PI);
+                rabbitOne.rotateX(Math.PI);
 
                 scene.add(rabbitOne);
             });

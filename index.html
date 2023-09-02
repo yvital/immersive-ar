@@ -120,27 +120,14 @@
                 scene.add(reticle);
             })
 
-            let flower;
-            loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function (gltf) {
-                flower = gltf.scene;
-            });
-
             session.addEventListener("select", (event) => {
-                /* if (flower) {
-                    const clone = flower.clone();
-                    clone.position.copy(reticle.position);
-                    scene.add(clone);
-                } */
                 if (visibleCircle) {
                     rabbitOne.position.copy(reticle.position);
-                    rabbitOne.rotateZ(Math.PI);
+                    rabbitOne.rotateX(Math.PI);
                     scene.add(rabbitOne);
                     visibleCircle = false;
                     reticle.visible = false;
                 }
-                //scene.remove(reticle);
-
-
             });
 
             // Create a render loop that allows us to draw on the AR view.

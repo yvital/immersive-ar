@@ -131,12 +131,13 @@
                     clone.position.copy(reticle.position);
                     scene.add(clone);
                 } */
-
-                rabbitOne.position.copy(reticle.position);
-                rabbitOne.rotateZ(Math.PI);
-                scene.add(rabbitOne);
-                visibleCircle = false;
-                reticle.visible = false;
+                if (visibleCircle) {
+                    rabbitOne.position.copy(reticle.position);
+                    rabbitOne.rotateZ(Math.PI);
+                    scene.add(rabbitOne);
+                    visibleCircle = false;
+                    reticle.visible = false;
+                }
                 //scene.remove(reticle);
 
 

@@ -26,6 +26,8 @@
 
             let floorInRoom = 0;
 
+            let visibleCircle = true;
+
             // To be continued in upcoming steps.
             const scene = new THREE.Scene();
 
@@ -73,7 +75,7 @@
             let textureRabbit_20 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d20.png');
             let materialRabbit_20 = new THREE.MeshBasicMaterial({ map: textureRabbit_20, transparent: true })
             let rabbitOne = new THREE.Mesh(geometryRabbit, materialRabbit_0);
-            
+
 
 
             const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
@@ -133,6 +135,10 @@
                 rabbitOne.position.copy(reticle.position);
                 rabbitOne.rotateY(Math.PI);
                 scene.add(rabbitOne);
+                visibleCircle = false;
+                reticle.visible = false;
+                //scene.remove(reticle);
+
 
             });
 
@@ -162,7 +168,7 @@
                     const hitTestResults = frame.getHitTestResults(hitTestSource);
                     if (hitTestResults.length > 0 && reticle) {
                         const hitPose = hitTestResults[0].getPose(referenceSpace);
-                        reticle.visible = true;
+                        if (visibleCircle) reticle.visible = true;
                         floorInRoom = Math.min(floorInRoom, hitPose.transform.position.y);
                         reticle.position.set(hitPose.transform.position.x, floorInRoom, hitPose.transform.position.z)
                         reticle.updateMatrixWorld(true);

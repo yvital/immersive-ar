@@ -29,7 +29,7 @@
             // To be continued in upcoming steps.
             const scene = new THREE.Scene();
 
-            let geometryRabbit = new THREE.PlaneGeometry(720 / 200, 1280 / 200);
+            let geometryRabbit = new THREE.PlaneGeometry(720 / 500, 1280 / 500);
             let textureRabbit_0 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d0.png');
             let materialRabbit_0 = new THREE.MeshBasicMaterial({ map: textureRabbit_0, transparent: true });
             let textureRabbit_1 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d1.png');
@@ -116,10 +116,6 @@
                 scene.add(reticle);
             })
 
-            let flower;
-            loader.load("https://immersive-web.github.io/webxr-samples/media/gltf/sunflower/sunflower.gltf", function (gltf) {
-                flower = gltf.scene;
-            });
 
             session.addEventListener("select", (event) => {
                 /* if (flower) {

@@ -24,6 +24,8 @@
             document.body.appendChild(canvas);
             const gl = canvas.getContext("webgl", { xrCompatible: true });
 
+            let floorInRoom = 0;
+
             // To be continued in upcoming steps.
             const scene = new THREE.Scene();
 
@@ -109,7 +111,8 @@
                     if (hitTestResults.length > 0 && reticle) {
                         const hitPose = hitTestResults[0].getPose(referenceSpace);
                         reticle.visible = true;
-                        reticle.position.set(hitPose.transform.position.x, -5, hitPose.transform.position.z)
+                        floorInRoom = Math.min(floorInRoom, floorInRoom);
+                        reticle.position.set(hitPose.transform.position.x, floorInRoom, hitPose.transform.position.z)
                         reticle.updateMatrixWorld(true);
                     }
 

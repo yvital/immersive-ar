@@ -29,7 +29,7 @@
             // To be continued in upcoming steps.
             const scene = new THREE.Scene();
 
-            let geometryRabbit = new THREE.PlaneGeometry(720 / 1000, 1280 / 1000);
+            let geometryRabbit = new THREE.PlaneGeometry(720 / 200, 1280 / 200);
             let textureRabbit_0 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d0.png');
             let materialRabbit_0 = new THREE.MeshBasicMaterial({ map: textureRabbit_0, transparent: true });
             let textureRabbit_1 = new THREE.TextureLoader().load('https://raw.githubusercontent.com/yvital/immersive-ar/development/rabbit/d1.png');
@@ -129,11 +129,9 @@
                 } */
 
                 rabbitOne.position.copy(reticle.position);
+                rabbitOne.rotateZ(Math.PI);
 
                 scene.add(rabbitOne);
-
-                rabbitOne.position.copy(reticle.position);
-
             });
 
             // Create a render loop that allows us to draw on the AR view.

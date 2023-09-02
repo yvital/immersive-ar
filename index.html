@@ -51,6 +51,29 @@
                 requiredFeatures: ["local-floor"],
                 optionalFeatures: ["bounded-floor"],
             });
+
+            let xrSession = null;
+            let xrReferenceSpace = null;
+            let spaceType = null;
+
+            function onSessionStarted(session) {
+                xrSession = session;
+
+                spaceType = "bounded-floor";
+                xrSession
+                    .requestReferenceSpace(spaceType)
+                    .then(onRefSpaceCreated)
+                    .catch(() => {
+                        spaceType = "local-floor";
+                        xrSession
+                            .requestReferenceSpace(spaceType)
+                            .then(onRefSpaceCreated)
+                            .catch(handleError);
+                    });
+            }
+
+            session =  onSessionStarted(session);
+
             session.updateRenderState({
                 baseLayer: new XRWebGLLayer(session, gl)
             });

@@ -109,7 +109,7 @@
                     if (hitTestResults.length > 0 && reticle) {
                         const hitPose = hitTestResults[0].getPose(referenceSpace);
                         reticle.visible = true;
-                        reticle.position.set(hitPose.transform.position.x, 0, hitPose.transform.position.z)
+                        reticle.position.set(hitPose.transform.position.x, -5, hitPose.transform.position.z)
                         reticle.updateMatrixWorld(true);
                     }
 

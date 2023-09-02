@@ -121,13 +121,13 @@
             })
 
             session.addEventListener("select", (event) => {
-                if (visibleCircle) {
+               
                     rabbitOne.position.copy(reticle.position);
                     rabbitOne.rotateX(Math.PI);
                     scene.add(rabbitOne);
-                    visibleCircle = false;
-                    reticle.visible = false;
-                }
+                    //visibleCircle = false;
+                    //reticle.visible = false;
+               
             });
 
             // Create a render loop that allows us to draw on the AR view.

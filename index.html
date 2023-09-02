@@ -111,7 +111,7 @@
                     if (hitTestResults.length > 0 && reticle) {
                         const hitPose = hitTestResults[0].getPose(referenceSpace);
                         reticle.visible = true;
-                        floorInRoom = Math.min(floorInRoom, floorInRoom);
+                        floorInRoom = Math.min(floorInRoom,hitPose.transform.position.y);
                         reticle.position.set(hitPose.transform.position.x, floorInRoom, hitPose.transform.position.z)
                         reticle.updateMatrixWorld(true);
                     }
